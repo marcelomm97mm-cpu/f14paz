@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>San Valentín 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #ffb3c6, #ffe5ec);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .container {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 25px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        max-width: 420px;
+        width: 90%;
+        z-index: 2;
+    }
+
+    h1 {
+        color: #d62828;
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    button {
+        padding: 14px 32px;
+        font-size: 18px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    .yes {
+        background-color: #ff4d6d;
+        color: white;
+    }
+
+    .no {
+        background-color: #adb5bd;
+        color: white;
+    }
+
+    .message {
+        display: none;
+        margin-top: 25px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #d62828;
+        animation: fadeIn 1.5s ease forwards;
+        line-height: 1.5;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    .heart {
+        position: fixed;
+        top: -20px;
+        font-size: 24px;
+        animation: fall linear forwards;
+        color: #ff4d6d;
+        z-index: 1;
+    }
+
+    @keyframes fall {
+        from {
+            transform: translateY(-20px);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(110vh);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>¿Paz, quieres ser mi Valentín? 💘</h1>
+
+    <div class="buttons" id="buttons">
+        <button class="yes" onclick="accept()">SÍ</button>
+        <button class="no" onclick="reject()">NO</button>
+    </div>
+
+    <div class="message" id="finalMessage">
+        ME SIENTO HONRADO 😊<br>
+        PAZ TE AMO INFINITAMENTE<br>
+        VAMOS POR UN FIN DE SEMANA MÁS<br>
+        A NUESTRA HISTORIA DE AMOR ❤️
+    </div>
+</div>
+
+<script>
+function accept() {
+    document.getElementById("buttons").style.display = "none";
+
+    let duration = 8000;
+    let interval = setInterval(createHeart, 150);
+
+    setTimeout(() => {
+        clearInterval(interval);
+        document.getElementById("finalMessage").style.display = "block";
+    }, duration);
+}
+
+function reject() {
+    alert("Esa opción no está disponible 💔 Inténtalo de nuevo 😉");
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 25 + 20) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+</script>
+
+</body>
+</html>
